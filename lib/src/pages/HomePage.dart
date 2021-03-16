@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:widgets/src/pages/AlertsPage.dart';
 
 class HomePage extends StatelessWidget {
 
@@ -28,15 +29,22 @@ class HomePage extends StatelessWidget {
       ),
       body: ListView(
         children: _pagesList.map((item) {
-          return Container(
-            padding: EdgeInsets.symmetric(vertical: 10),
-            child: ListTile(
-              title: Text(item['title']),
-              leading: Icon(
-                item['icon'],
-                color: Colors.blue,
+          return InkWell(
+            onTap: () {
+              Navigator.of(context).pushNamed(item['route']);
+              // Navigator.of(context).pushReplacementNamed(item['route']);
+              // Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => AlertsPage()));
+            },
+            child: Container(
+              padding: EdgeInsets.symmetric(vertical: 10),
+              child: ListTile(
+                title: Text(item['title']),
+                leading: Icon(
+                  item['icon'],
+                  color: Colors.blue,
+                ),
+                trailing: Icon(Icons.keyboard_arrow_right),
               ),
-              trailing: Icon(Icons.keyboard_arrow_right),
             ),
           );
         }).toList(),
